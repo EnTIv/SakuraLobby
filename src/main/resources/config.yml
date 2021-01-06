@@ -1,0 +1,39 @@
+# 该插件只限登录服使用
+
+# 建筑保护: 玩家无法破坏方块
+# 伤害保护: 玩家不会受到任何伤害
+# 饥饿保护: 玩家不会损失饥饿值
+# 清理屏幕: 当玩家加入时清空聊天栏
+
+基础设定:
+  建筑保护: true
+  伤害保护: true
+  饥饿保护: true
+  清理屏幕: true
+
+# 当玩家低于检测 y 轴时自动传送到指定坐标, 设为 -1 关闭该功能
+虚空保护:
+  检测Y轴: 10
+  传送地点:
+    x: 0.5
+    y: 100
+    z: 0.5
+    # 玩家左右扭头的角度
+    yaw: 90
+    # 玩家上下抬头的角度
+    pitch: 0
+
+# 使用 Authme 登录时自动传送到 Lobby 服务器
+跨服传送:
+  # 指令 /lobby teleport 直接传送到 Lobby 服务器
+  # 指令 /lobby cancel 留在登录服
+  开启: true
+  服务器名: "Lobby"
+  延迟秒数: 5
+  传送消息: "&a正在将您传送至服务器大厅,请等待 &b&l%delay% &a秒..."
+
+  # 使用 Authme 登录时执行以下指令
+登录指令:
+  - 'tellraw %player% {"text":"&6&m+--------------+&d&l  MineCraft  &6&m+--------------+\n"}'
+  - 'tellraw %player% {"text":"&b&l ▬&7 等待&b&l %delay% &7秒后将会自动将你传送至服务器大厅\n"}'
+  - 'tellraw %player% [{"text":"&b&l ▬&7 您也可以选择: "},{"text":"&a&l直接传送","clickEvent":{"action":"run_command","value":"/lobby teleport"},"hoverEvent":{"action":"show_text","value":"&b&l点击直接传送至服务器大厅"}},{"text":"  &c&l留在大厅\n","clickEvent":{"action":"run_command","value":"/SakuraLobby cancel"},"hoverEvent":{"action":"show_text","value":"&b&l点击留在登录大厅"}}]'
